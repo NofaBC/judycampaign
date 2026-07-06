@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JudyCampaign™ — Advertisements That Start Conversations</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --primary-light: #818cf8;
+      --secondary: #06b6d4;
+      --accent: #f59e0b;
+      --surface: #ffffff;
+      --surface-elevated: #f8fafc;
+      --surface-card: #ffffff;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --border: #e2e8f0;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.07);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.08);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      --radius-sm: 8px;
+      --radius: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--surface);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .page {
+      display: none;
+      min-height: 100vh;
+    }
+    .page.active {
+      display: block;
+      animation: pageFadeIn 0.5s ease-out;
+    }
+    @keyframes pageFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =============================================
+       PAGE 1: LANDING PAGE
+       ============================================= */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .navbar .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+    .navbar .logo span { color: var(--text-primary); }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 10px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(99,102,241,0.3);
+    }
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99,102,241,0.4);
+    }
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(99,102,241,0.08);
+      color: var(--primary);
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      border: 1px solid rgba(99,102,241,0.15);
+    }
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .hero h1 {
+      font-size: 3.6rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero .subheadline {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 8px 30px rgba(99,102,241,0.35);
+      letter-spacing: 0.01em;
+    }
+    .hero-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(99,102,241,0.45);
+    }
+    .hero-cta .arrow {
+      transition: transform 0.3s;
+    }
+    .hero-cta:hover .arrow {
+      transform: translateX(4px);
+    }
+    .positioning-bar {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      text-align: center;
+      padding: 20px 24px;
+      margin-top: 60px;
+      font-size: 1.05rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    .section {
+      padding: 80px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto 50px;
+    }
+    .what-is-card {
+      background: var(--surface-card);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .what-is-card .icon-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 2rem;
+      color: white;
+      box-shadow: 0 8px 24px rgba(99,102,241,0.3);
+    }
+    .what-is-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .what-is-card p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .comparison-card {
+      background: var(--surface-card);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    .comparison-card.traditional {
+      border-top: 4px solid var(--text-muted);
+    }
+    .comparison-card.judy {
+      border-top: 4px solid var(--primary);
+      box-shadow: var(--shadow-lg);
+    }
+    .comparison-card .card-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+    }
+    .comparison-card.judy .card-label {
+      color: var(--primary);
+    }
+    .comparison-card h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .comparison-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .comparison-card li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .comparison-card li .check { color: #22c55e; font-weight: 700; min-width: 20px; }
+    .comparison-card li .x { color: #ef4444; font-weight: 700; min-width: 20px; }
+    .vs-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 0.85rem;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 4px 16px rgba(99,102,241,0.4);
+      z-index: 2;
+    }
+    .comparison-wrapper {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .step-card {
+      background: var(--surface-card);
+      border-radius: var(--radius-xl);
+      padding: 32px 24px;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: var(--transition);
+      position: relative;
+    }
+    .step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary-light);
+    }
+    .step-number {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 12px rgba(99,102,241,0.25);
+    }
+    .step-card h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .step-card p {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .step-arrow {
+      display: none;
+    }
+    @media (min-width: 900px) {
+      .steps-grid {
+        grid-template-columns: repeat(7, 1fr);
+      }
+      .step-arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-light);
+        font-size: 1.5rem;
+        font-weight: 300;
+        padding-top: 20px;
+      }
+    }
+    .industries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .industry-pill {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 12px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      cursor: default;
+    }
+    .industry-pill:hover {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99,102,241,0.25);
+    }
+    .bottom-cta-section {
+      text-align: center;
+      padding: 80px 24px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.03) 0%, rgba(6,182,212,0.03) 100%);
+      border-top: 1px solid var(--border);
+    }
+    .bottom-cta-section h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .bottom-cta-section p {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+    .footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+    .footer .tagline {
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    /* =============================================
+       PAGE 2: THE ACTUAL ADVERTISEMENT
+       ============================================= */
+    .ad-page {
+      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .ad-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ad-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .ad-header .logo-text {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+    .ad-header .back-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+    }
+    .ad-header .back-btn:hover {
+      background: rgba(255,255,255,0.25);
+    }
+    .ad-header .limited-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0.95;
+    }
+    .ad-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+    }
+    .ad-wrapper {
+      max-width: 1100px;
+      width: 100%;
+      background: var(--surface-card);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--border);
+    }
+    .ad-wrapper img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .ad-caption {
+      padding: 16px 24px;
+      background: var(--surface-elevated);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .ad-caption .ad-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .ad-caption .ai-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .ad-footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: white;
+    }
+    .ad-footer .tagline {
+      font-style: italic;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    @media (max-width: 900px) {
+      .comparison-grid { grid-template-columns: 1fr; }
+      .vs-badge { display: none; }
+      .hero h1 { font-size: 2.4rem; }
+      .navbar { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .section { padding: 60px 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.9rem; }
+      .hero { padding: 50px 20px 40px; }
+      .what-is-card { padding: 32px 20px; }
+      .comparison-card { padding: 28px 20px; }
+    }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+  </style>
+<base target="_blank">
+</head>
+<body>
+
+  <!-- =============================================
+       PAGE 1: LANDING PAGE
+       ============================================= -->
+  <div class="page active" id="page1">
+    <nav class="navbar">
+      <div class="logo">Judy<span>Campaign</span>™</div>
+      <div class="nav-links">
+        <a href="#what-is">What Is It?</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#industries">Industries</a>
+        <button class="nav-cta" onclick="goToPage2()">Launch Demo</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Interactive AI Advertisement Platform
+      </div>
+      <h1>JudyCampaign™ Turns <span class="highlight">Advertisements Into Conversations</span></h1>
+      <p class="subheadline">
+        NOFA builds interactive AI advertisements with a 24/7 Judy integrated inside the campaign. Your client posts the campaign anywhere, and Judy presents the offer, answers questions, and captures high-intent leads.
+      </p>
+      <button class="hero-cta" onclick="goToPage2()">
+        Experience the Future of Advertising
+        <span class="arrow">→</span>
+      </button>
+    </section>
+
+    <div class="positioning-bar">
+      <strong>NOFA builds your interactive AI ad. You post it anywhere. Judy handles the conversation.</strong>
+    </div>
+
+    <section class="section" id="what-is">
+      <h2 class="section-title">What Is JudyCampaign™?</h2>
+      <p class="section-subtitle">The next evolution of digital advertising</p>
+      <div class="what-is-card">
+        <div class="icon-ring">🤖</div>
+        <h3>An Interactive AI Advertisement Experience</h3>
+        <p>
+          Instead of sending people to a static landing page, the ad opens with Judy already inside it — presenting the offer, showing campaign visuals, answering questions, and guiding visitors toward action. <strong>The ad does not end at the click. The ad comes alive.</strong>
+        </p>
+      </div>
+    </section>
+
+    <section class="section" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+      <h2 class="section-title">Traditional Ads vs JudyCampaign™</h2>
+      <p class="section-subtitle">See the difference for yourself</p>
+      <div class="comparison-wrapper">
+        <div class="comparison-grid">
+          <div class="comparison-card traditional">
+            <div class="card-label">The Old Way</div>
+            <h3>Traditional Ads</h3>
+            <ul>
+              <li><span class="x">✕</span> Static image or landing page</li>
+              <li><span class="x">✕</span> Visitor has to search for information</li>
+              <li><span class="x">✕</span> Contact form creates friction</li>
+              <li><span class="x">✕</span> Basic click analytics only</li>
+            </ul>
+          </div>
+          <div class="comparison-card judy">
+            <div class="card-label">The New Way</div>
+            <h3>JudyCampaign™</h3>
+            <ul>
+              <li><span class="check">✓</span> Interactive AI advertisement</li>
+              <li><span class="check">✓</span> Judy presents value immediately</li>
+              <li><span class="check">✓</span> Visitor asks questions inside the campaign</li>
+              <li><span class="check">✓</span> Judy captures leads with intent</li>
+              <li><span class="check">✓</span> NOFA monitors conversations & engagement</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vs-badge">VS</div>
+      </div>
+    </section>
+
+    <section class="section" id="how-it-works">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">From campaign request to live AI conversation in 7 steps</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>Advertiser Requests</h4>
+          <p>Sends campaign details to NOFA</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>NOFA Builds</h4>
+          <p>Creates the interactive AI campaign</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>Judy Trained</h4>
+          <p>AI guide learns the business & offer</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h4>Delivered</h4>
+          <p>Campaign link, assets & tracking ready</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-number">5</div>
+          <h4>Posted Anywhere</h4>
+          <p>Social, email, SMS, QR, website</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-number">6</div>
+          <h4>Judy Engages 24/7</h4>
+          <p>Answers questions, captures leads</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step-card">
+          <div class="step-number">7</div>
+          <h4>NOFA Reports</h4>
+          <p>Conversations, leads & intent data</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="industries" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+      <h2 class="section-title">Industries We Serve</h2>
+      <p class="section-subtitle">JudyCampaign™ works across every vertical</p>
+      <div class="industries-grid">
+        <div class="industry-pill">🦷 Dental</div>
+        <div class="industry-pill">🏠 Real Estate</div>
+        <div class="industry-pill">⚖️ Attorneys</div>
+        <div class="industry-pill">🍽️ Restaurants</div>
+        <div class="industry-pill">🛍️ Retail Stores</div>
+        <div class="industry-pill">🏨 Hotels</div>
+        <div class="industry-pill">🏥 Healthcare</div>
+        <div class="industry-pill">🚗 Auto Dealers</div>
+        <div class="industry-pill">🎉 Events</div>
+        <div class="industry-pill">🏢 Property Management</div>
+        <div class="industry-pill">🔧 Home Services</div>
+        <div class="industry-pill">💼 Business Consulting</div>
+      </div>
+    </section>
+
+    <section class="bottom-cta-section">
+      <h2>See It In Action</h2>
+      <p>Experience a live JudyCampaign™ interactive advertisement demo.</p>
+      <button class="hero-cta" onclick="goToPage2()">
+        Launch Live Demo
+        <span class="arrow">→</span>
+      </button>
+    </section>
+
+    <footer class="footer">
+      <p class="tagline">"The ad does not end at the click. The ad comes alive."</p>
+      <p>JudyCampaign™ helps advertisers move from static landing pages to AI-guided campaign experiences.</p>
+      <p style="margin-top:8px;">© 2026 JudyCampaign™ — A NOFA AI Factory™ Product</p>
+    </footer>
+  </div>
+
+  <!-- =============================================
+       PAGE 2: THE ACTUAL ADVERTISEMENT
+       This is what the advertiser posts everywhere.
+       ============================================= -->
+  <div class="page ad-page" id="page2">
+    <div class="ad-header">
+      <div class="ad-header-left">
+        <button class="back-btn" onclick="goToPage1()">← Back to JudyCampaign™</button>
+        <span class="logo-text">JudyCampaign™ Demo</span>
+      </div>
+      <div class="limited-badge">
+        <span>⏰</span>
+        Limited Time Offer: Ends June 30, 2025
+      </div>
+    </div>
+
+    <div class="ad-container">
+      <div class="ad-wrapper">
+        <!-- PASTE YOUR BASE64 IMAGE CODE IN THE SRC ATTRIBUTE BELOW -->
+        <!-- Example: src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAA..." -->
+        <img src="data:image/png;base64,PASTE_YOUR_BASE64_CODE_HERE" alt="ABC Dental — New Patient Special Interactive AI Advertisement" onerror="this.src='https://via.placeholder.com/1200x960/6366f1/ffffff?text=ABC+Dental+Campaign+Demo'">
+        
+        <div class="ad-caption">
+          <span class="ad-label">👆 This is the actual interactive advertisement your customers will see. Judy is embedded inside it.</span>
+          <div class="ai-badge">
+            <span>🤖</span> Powered by Judy AI
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-footer">
+      <p class="tagline">"The ad does not end at the click. The ad comes alive."</p>
+      <p>JudyCampaign™ — A NOFA AI Factory™ Product</p>
+    </div>
+  </div>
+
+  <script>
+    function goToPage2() {
+      document.getElementById('page1').classList.remove('active');
+      document.getElementById('page2').classList.add('active');
+      window.scrollTo(0, 0);
+    }
+    function goToPage1() {
+      document.getElementById('page2').classList.remove('active');
+      document.getElementById('page1').classList.add('active');
+      window.scrollTo(0, 0);
+    }
+  </script>
+</body>
+</html>A
